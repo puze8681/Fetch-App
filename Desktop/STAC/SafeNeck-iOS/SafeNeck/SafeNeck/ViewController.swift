@@ -19,19 +19,23 @@ class ViewController: UIViewController {
     //UI 생성
     func setUI(){
         setUISetting()
-        setLogoImage()
+        setLogoImageView()
         setSlogunView()
         setButtonView()
     }
     
     //기본 UI 세팅
     func setUISetting(){
+        
+        //내비게이션 바 지우기
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        //백그라운드 컬러
         view.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
     }
     
     //로고 이미지 생성
-    func setLogoImage(){
+    func setLogoImageView(){
         let imageView = UIImageView(frame: CGRect(x: 0, y: view.frame.width * 0.3, width: view.frame.width, height: view.frame.height * 0.45))
         imageView.image = #imageLiteral(resourceName: "bg_splash_logo.png")
         imageView.contentMode = .scaleAspectFit
@@ -55,9 +59,9 @@ class ViewController: UIViewController {
         view.addSubview(contentLabel)
     }
     
-    //두번째 하단 뷰 생성
+    //회원가입, 로그인 버튼 뷰 생성
     func setButtonView(){
-        let registerButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.7 + 20, width: 200, height: view.frame.height * 0.05))
+        let registerButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.7, width: 200, height: view.frame.height * 0.05))
         registerButton.setTitle("회원가입", for: .normal)
         registerButton.setTitleColor(UIColor.black, for: .normal)
         registerButton.backgroundColor = .white
@@ -69,7 +73,7 @@ class ViewController: UIViewController {
         registerButton.addTarget(RegisterViewController(), action: #selector(registerButtonClicked), for: .touchUpInside)
         view.addSubview(registerButton)
         
-        let loginButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.8 + 20, width: 200, height: view.frame.height * 0.05))
+        let loginButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.8, width: 200, height: view.frame.height * 0.05))
         loginButton.setTitle("로그인", for: .normal)
         loginButton.setTitleColor(UIColor.black, for: .normal)
         loginButton.backgroundColor = .white
