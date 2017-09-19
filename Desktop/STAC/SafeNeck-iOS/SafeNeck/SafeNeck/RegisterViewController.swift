@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,45 +50,33 @@ class RegisterViewController: UIViewController {
     
     //회원가입 정보창 생성
     func setRegisterInfoView(){
-        let nameTextField = UITextField(frame: CGRect(x: 10, y: view.frame.height * 0.15, width: view.frame.width - 20, height: 50))
-        nameTextField.layer.cornerRadius = 5
-        nameTextField.layer.borderWidth = 1.5
-        nameTextField.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
-        nameTextField.placeholder = "   NAME"
-        nameTextField.textColor = UIColor.black
-        view.addSubview(nameTextField)
+        let nameField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.12, width: view.frame.width - 20, height: 50))
+        let nameTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.12, width: view.frame.width - 50, height: 50))
+        nameTextField.placeholder = "NAME"
+        asdf(nameField, nameTextField)
         
-        let idTextField = UITextField(frame: CGRect(x: 10, y: view.frame.height * 0.25, width: view.frame.width - 20, height: 50))
-        idTextField.layer.cornerRadius = 5
-        idTextField.layer.borderWidth = 1.5
-        idTextField.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
-        idTextField.placeholder = "   ID"
-        idTextField.textColor = UIColor.black
-        view.addSubview(idTextField)
+        let idField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.22, width: view.frame.width - 20, height: 50))
+        let idTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.22, width: view.frame.width - 50, height: 50))
+        idTextField.placeholder = "ID"
+        asdf(idField, idTextField)
         
-        let pwTextField = UITextField(frame: CGRect(x: 10, y: view.frame.height * 0.35, width: view.frame.width - 20, height: 50))
-        pwTextField.layer.cornerRadius = 5
-        pwTextField.layer.borderWidth = 1.5
-        pwTextField.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
-        pwTextField.placeholder = "   PW"
-        pwTextField.textColor = UIColor.black
+        let pwField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.32, width: view.frame.width - 20, height: 50))
+        let pwTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.32, width: view.frame.width - 50, height: 50))
+        pwTextField.placeholder = "PW"
         pwTextField.isSecureTextEntry = true;
-        view.addSubview(pwTextField)
+        asdf(pwField, pwTextField)
         
-        let pwConFirmTextField = UITextField(frame: CGRect(x: 10, y: view.frame.height * 0.45, width: view.frame.width - 20, height: 50))
-        pwConFirmTextField.layer.cornerRadius = 5
-        pwConFirmTextField.layer.borderWidth = 1.5
-        pwConFirmTextField.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
-        pwConFirmTextField.placeholder = "   PW CONFIRM"
-        pwConFirmTextField.textColor = UIColor.black
-        pwTextField.isSecureTextEntry = true;
-        view.addSubview(pwConFirmTextField)
+        let pwConfirmField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.42, width: view.frame.width - 20, height: 50))
+        let pwConfirmTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.42, width: view.frame.width - 50, height: 50))
+        pwConfirmTextField.placeholder = "PW CONFIRM"
+        pwConfirmTextField.isSecureTextEntry = true;
+        asdf(pwConfirmField, pwConfirmTextField)
     }
     
     //회원가입 버튼 생성
     func setRegisterButtonView() {
         
-        let registerButton = UIButton(frame: CGRect(x: 0, y: view.frame.height * 0.8, width: view.frame.width, height: view.frame.height * 0.25))
+        let registerButton = UIButton(frame: CGRect(x: 0, y: view.frame.height * 0.9, width: view.frame.width, height: view.frame.height * 0.1))
         registerButton.setTitle("regist", for: .normal)
         registerButton.setTitleColor(UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1), for: .normal)
         registerButton.contentHorizontalAlignment = .center
@@ -103,6 +91,24 @@ class RegisterViewController: UIViewController {
     //백 버튼 실행
     func backButtonClicked(){
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    //회원가입 텍스트필드 기본 세팅
+    func asdf(_ field: UIView, _ textField : UITextField) {
+        field.layer.cornerRadius = 5
+        field.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
+        field.layer.borderWidth = 1.5
+        textField.textColor = UIColor.black
+        textField.delegate = self
+        textField.keyboardType = UIKeyboardType.asciiCapable
+        view.addSubview(field)
+        view.addSubview(textField)
+    }
+    
+    //리턴 누르면 키보드 없애기
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     //회원가입 버튼 실행
