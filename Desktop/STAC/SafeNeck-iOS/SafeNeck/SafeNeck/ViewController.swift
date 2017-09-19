@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
                 setUI()
     }
     
@@ -21,7 +20,8 @@ class ViewController: UIViewController {
     func setUI(){
         setUISetting()
         setLogoImage()
-        setFirstBottomView()
+        setSlogunView()
+        setButtonView()
     }
     
     //기본 UI 세팅
@@ -38,8 +38,8 @@ class ViewController: UIViewController {
         view.addSubview(imageView)
     }
     
-    //첫번째 하단 뷰 생성
-    func setFirstBottomView() {
+    //하단 슬로건 뷰 생성
+    func setSlogunView() {
         let titleLabel = UILabel(frame: CGRect(x: 0, y: view.frame.height * 0.8, width: view.frame.width, height: view.frame.height * 0.25))
         titleLabel.text = "STA + C 2017"
         titleLabel.font = UIFont(name: "NanumBarunGothicBold", size: 20.0)
@@ -55,7 +55,53 @@ class ViewController: UIViewController {
         view.addSubview(contentLabel)
     }
     
-    //
+    //두번째 하단 뷰 생성
+    func setButtonView(){
+        let registerButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.7 + 20, width: 200, height: view.frame.height * 0.05))
+        registerButton.setTitle("회원가입", for: .normal)
+        registerButton.setTitleColor(UIColor.black, for: .normal)
+        registerButton.backgroundColor = .white
+        registerButton.layer.cornerRadius = 10
+        registerButton.layer.shadowColor = UIColor.black.cgColor
+        registerButton.layer.shadowOpacity = 0.2
+        registerButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        registerButton.layer.shadowRadius = 2
+        registerButton.addTarget(RegisterViewController(), action: #selector(registerButtonClicked), for: .touchUpInside)
+        view.addSubview(registerButton)
+        
+        let loginButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.8 + 20, width: 200, height: view.frame.height * 0.05))
+        loginButton.setTitle("로그인", for: .normal)
+        loginButton.setTitleColor(UIColor.black, for: .normal)
+        loginButton.backgroundColor = .white
+        loginButton.layer.cornerRadius = 10
+        loginButton.layer.shadowColor = UIColor.black.cgColor
+        loginButton.layer.shadowOpacity = 0.2
+        loginButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        loginButton.layer.shadowRadius = 2
+        loginButton.addTarget(LoginViewController(), action: #selector(loginButtonClicked), for: .touchUpInside)
+        view.addSubview(loginButton)
+    }
+    
+    //회원가입 버튼 실행 <- 완전 중요
+    func registerButtonClicked(){
+        //옆에서 나오게 하는거임
+        //self.navigationController.pushViewController(RegisterViewController(), animated:true)
+        //그냥 띄우는거임
+        //self.present(navigationController,animated:true, completion:nil)
+        //팝업으로 뜨는거임
+//        print("Registernumuganda")
+//        let navigationController = UINavigationController(rootViewController: RegisterViewController())
+//        navigationController.pushViewController(RegisterViewController(), animated: true)
+
+        self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+    
+    }
+    
+    func loginButtonClicked(){
+        print("Registernumuganda")
+        let navigationController = UINavigationController(rootViewController: LoginViewController())
+        self.present(navigationController,animated:true, completion:nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

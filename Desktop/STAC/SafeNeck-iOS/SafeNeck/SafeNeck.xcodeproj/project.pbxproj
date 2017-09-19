@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8372ED181F6D86CC00949A6D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8372ED171F6D86CC00949A6D /* RegisterViewController.swift */; };
+		8372ED1E1F6FBCD100949A6D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8372ED1D1F6FBCD100949A6D /* LoginViewController.swift */; };
 		838FB0971F658F370047E6B6 /* bg_daily_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 838FB0821F658F370047E6B6 /* bg_daily_icon.png */; };
 		838FB0981F658F370047E6B6 /* bg_logon_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 838FB0831F658F370047E6B6 /* bg_logon_logo.png */; };
 		838FB0991F658F370047E6B6 /* bg_splash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 838FB0841F658F370047E6B6 /* bg_splash_logo.png */; };
@@ -41,6 +42,7 @@
 		8372ED1A1F6EB04000949A6D /* NanumBarunGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicBold.otf; sourceTree = "<group>"; };
 		8372ED1B1F6EB04000949A6D /* NanumBarunGothicLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicLight.otf; sourceTree = "<group>"; };
 		8372ED1C1F6EB04000949A6D /* NanumBarunGothicUltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicUltraLight.otf; sourceTree = "<group>"; };
+		8372ED1D1F6FBCD100949A6D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		838FB07D1F6588FF0047E6B6 /* nanum_barun_gothic_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nanum_barun_gothic_bold.ttf; sourceTree = "<group>"; };
 		838FB07E1F6588FF0047E6B6 /* nanum_barun_gothic_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nanum_barun_gothic_light.ttf; sourceTree = "<group>"; };
 		838FB07F1F6588FF0047E6B6 /* nanum_barun_gothic_ultra_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nanum_barun_gothic_ultra_light.ttf; sourceTree = "<group>"; };
@@ -151,10 +153,11 @@
 				838FB07C1F6588D50047E6B6 /* Fonts */,
 				83FFCF401F61A72400B04582 /* AppDelegate.swift */,
 				83FFCF421F61A72400B04582 /* ViewController.swift */,
+				8372ED171F6D86CC00949A6D /* RegisterViewController.swift */,
+				8372ED1D1F6FBCD100949A6D /* LoginViewController.swift */,
 				83FFCF471F61A72400B04582 /* Assets.xcassets */,
 				83FFCF491F61A72400B04582 /* LaunchScreen.storyboard */,
 				83FFCF4C1F61A72400B04582 /* Info.plist */,
-				8372ED171F6D86CC00949A6D /* RegisterViewController.swift */,
 			);
 			path = SafeNeck;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8372ED1E1F6FBCD100949A6D /* LoginViewController.swift in Sources */,
 				8372ED181F6D86CC00949A6D /* RegisterViewController.swift in Sources */,
 				83FFCF431F61A72400B04582 /* ViewController.swift in Sources */,
 				83FFCF411F61A72400B04582 /* AppDelegate.swift in Sources */,
