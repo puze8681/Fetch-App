@@ -50,27 +50,48 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     //회원가입 정보창 생성
     func setRegisterInfoView(){
+        
+        //UIView
         let nameField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.12, width: view.frame.width - 20, height: 50))
+        let idField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.22, width: view.frame.width - 20, height: 50))
+        let pwField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.32, width: view.frame.width - 20, height: 50))
+        let pwConfirmField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.42, width: view.frame.width - 20, height: 50))
+
+        //TextField
         let nameTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.12, width: view.frame.width - 50, height: 50))
         nameTextField.placeholder = "NAME"
-        asdf(nameField, nameTextField)
         
-        let idField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.22, width: view.frame.width - 20, height: 50))
         let idTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.22, width: view.frame.width - 50, height: 50))
         idTextField.placeholder = "ID"
-        asdf(idField, idTextField)
         
-        let pwField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.32, width: view.frame.width - 20, height: 50))
         let pwTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.32, width: view.frame.width - 50, height: 50))
         pwTextField.placeholder = "PW"
         pwTextField.isSecureTextEntry = true;
-        asdf(pwField, pwTextField)
         
-        let pwConfirmField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.42, width: view.frame.width - 20, height: 50))
         let pwConfirmTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.42, width: view.frame.width - 50, height: 50))
         pwConfirmTextField.placeholder = "PW CONFIRM"
         pwConfirmTextField.isSecureTextEntry = true;
+        
+        //UIView, TextField 세팅 함수 실행
+        asdf(nameField, nameTextField)
+        asdf(idField, idTextField)
+        asdf(pwField, pwTextField)
         asdf(pwConfirmField, pwConfirmTextField)
+    }
+    
+    //다른 방식으로 회원가입
+    func setAnotherRegistView(){
+        let longView = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.8 - 10, width: view.frame.width - 20, height: 1))
+        longView.backgroundColor = UIColor.gray
+        view.addSubview(longView)
+        
+        let anotherRegistLabel = UILabel(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 - 14, width: (view.frame.width - 40) / 3, height: 10))
+        anotherRegistLabel.text = "다른 방식으로 회원가입"
+        anotherRegistLabel.font = UIFont(name: "NanumBarunGothic", size: 10 )
+        anotherRegistLabel.textAlignment = NSTextAlignment.center
+        anotherRegistLabel.textColor = UIColor.gray
+        anotherRegistLabel.backgroundColor = UIColor.white
+        view.addSubview(anotherRegistLabel)
     }
     
     //회원가입 버튼 생성

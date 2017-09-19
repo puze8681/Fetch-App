@@ -98,13 +98,11 @@ class ViewController: UIViewController {
 //        navigationController.pushViewController(RegisterViewController(), animated: true)
 
         self.navigationController?.pushViewController(RegisterViewController(), animated: true)
-    
     }
     
     func loginButtonClicked(){
-        print("Registernumuganda")
-        let navigationController = UINavigationController(rootViewController: LoginViewController())
-        self.present(navigationController,animated:true, completion:nil)
+        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+
     }
     
     override func didReceiveMemoryWarning() {
