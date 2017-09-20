@@ -11,7 +11,7 @@ import Alamofire
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
-    let URL = "http://soylatte.kr:8080"
+    let registerURL = "http://soylatte.kr:8080/auth/register"
     var nameTextField: UITextField!
     var idTextField: UITextField!
     var pwTextField: UITextField!
@@ -106,15 +106,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     //구글, 페이스북, 네이버 회원가입 버튼 생성
     func setAnotherRegistButtonView(){
         let googleImage = UIImage(named: "ic_login_google")
-        let googleRegistButton = anotherRegisterUIButton(frame: CGRect(x: 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: googleImage!, getColor: UIColor.red)
+        let googleRegistButton = anotherRegisterUIButton(frame: CGRect(x: 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: googleImage!, getColor: UIColor(red: 210/255, green: 53/255, blue: 44/255, alpha: 1))
+
         view.addSubview(googleRegistButton)
         
         let naverImage = UIImage(named: "ic_login_naver")
-        let naverRegistButton = anotherRegisterUIButton(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: naverImage!, getColor: UIColor.green)
+        let naverRegistButton = anotherRegisterUIButton(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: naverImage!, getColor: UIColor(red: 35/255, green: 194/255, blue: 5/255, alpha: 1))
         view.addSubview(naverRegistButton)
         
         let fbImage = UIImage(named: "ic_login_fb")
-        let facebookRegistButton = anotherRegisterUIButton(frame: CGRect(x: view.frame.width - ((view.frame.width - 40) / 3) - 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: fbImage!, getColor: UIColor.blue)
+        let facebookRegistButton = anotherRegisterUIButton(frame: CGRect(x: view.frame.width - ((view.frame.width - 40) / 3) - 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: fbImage!, getColor: UIColor(red: 45/255, green: 68/255, blue: 134/255, alpha: 1))
         view.addSubview(facebookRegistButton)
     }
     
@@ -172,7 +173,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }else if(pwConfirmTextField.text != pwTextField.text){
             myAlert("Regist FAIL", message: "confirm your PASSWORD")
         }else{
-            regist()
+            regist(nameTextField.text!, idTextField.text!, pwTextField.text!, pwConfirmTextField.text!)
         }
     }
 
@@ -184,8 +185,28 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func regist(){
+    //회원가입
+    func regist(_ name: String, _ id: String, _ pw: String, _ pwConfirm: String){
+        let parameters = [
+            "id" : id,
+            "password" : pw,
+            "name" : name,
+            ] as [String : Any]
         
+        Alamofire.request(registerURL, method: .post, parameters: parameters).responseJSON
+            {
+                response in
+                print(response)
+                let stringStatusCode = String(describing: response.response?.statusCode)
+                //printing response
+                if(response.response?.statusCode == 200){
+                    self.myAlert("Regist SUCCESS", message: "WELCOME - SAFE NECK")
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    print("STATUS CODE : " + stringStatusCode)
+                    self.myAlert("Regist FAIL", message:"SERVER ERROR")
+                }
+        }
     }
     
     /*

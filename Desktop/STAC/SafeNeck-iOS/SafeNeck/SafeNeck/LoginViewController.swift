@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    let loginURL = "http://soylatte.kr:8080/auth/login"
+    var idTextField: UITextField!
+    var pwTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -58,10 +63,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let pwField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.22, width: view.frame.width - 20, height: 50))
         
         //TextField
-        let idTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.12, width: view.frame.width - 50, height: 50))
+        idTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.12, width: view.frame.width - 50, height: 50))
         idTextField.placeholder = "ID"
         
-        let pwTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.22, width: view.frame.width - 50, height: 50))
+        pwTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.22, width: view.frame.width - 50, height: 50))
         pwTextField.placeholder = "PW"
         pwTextField.isSecureTextEntry = true;
         
@@ -88,15 +93,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //구글, 페이스북, 네이버 로그인 버튼 생성
     func setAnotherLoginButtonView(){
         let googleImage = UIImage(named: "ic_login_google")
-        let googleLoginButton = anotherLoginUIButton(frame: CGRect(x: 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: googleImage!, getColor: UIColor.red)
+        let googleLoginButton = anotherLoginUIButton(frame: CGRect(x: 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: googleImage!, getColor: UIColor(red: 210/255, green: 53/255, blue: 44/255, alpha: 1))
         view.addSubview(googleLoginButton)
         
         let naverImage = UIImage(named: "ic_login_naver")
-        let naverLoginButton = anotherLoginUIButton(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: naverImage!, getColor: UIColor.green)
+        let naverLoginButton = anotherLoginUIButton(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: naverImage!, getColor: UIColor(red: 35/255, green: 194/255, blue: 5/255, alpha: 1))
         view.addSubview(naverLoginButton)
         
         let fbImage = UIImage(named: "ic_login_fb")
-        let facebookLoginButton = anotherLoginUIButton(frame: CGRect(x: view.frame.width - ((view.frame.width - 40) / 3) - 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: fbImage!, getColor: UIColor.blue)
+        let facebookLoginButton = anotherLoginUIButton(frame: CGRect(x: view.frame.width - ((view.frame.width - 40) / 3) - 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: fbImage!, getColor: UIColor(red: 45/255, green: 68/255, blue: 134/255, alpha: 1))
         view.addSubview(facebookLoginButton)
     }
     
@@ -107,6 +112,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
         loginButton.contentHorizontalAlignment = .center
+        loginButton.addTarget(LoginViewController(), action: #selector(loginButtonClicked), for: .touchUpInside)
         view.addSubview(loginButton)
     }
     
@@ -135,8 +141,48 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //로그인 버튼 실행
     func loginButtonClicked(){
+        print("login")
         
+        if(idTextField.text == ""){
+            myAlert("Login FAIL", message: "enter your ID")
+        }else if(pwTextField.text == ""){
+            myAlert("Login FAIL", message: "enter your PASSWORD")
+        }else{
+            login(idTextField.text!, pwTextField.text!)
+        }
     }
+
+    //Alert 실행
+    func myAlert(_ title : String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //로그인
+    func login(_ id: String, _ pw: String){
+        let parameters = [
+            "id" : id,
+            "password" : pw,
+            ] as [String : Any]
+        
+        Alamofire.request(loginURL, method: .post, parameters: parameters).responseJSON
+            {
+                response in
+                print(response)
+                let stringStatusCode = String(describing: response.response?.statusCode)
+                //printing response
+                if(response.response?.statusCode == 200){
+                    self.myAlert("Login SUCCESS", message: "WELCOME - SAFE NECK")
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    print("STATUS CODE : " + stringStatusCode)
+                    self.myAlert("Login FAIL", message:"SERVER ERROR")
+                }
+        }
+    }
+
     
     /*
      // MARK: - Navigation
