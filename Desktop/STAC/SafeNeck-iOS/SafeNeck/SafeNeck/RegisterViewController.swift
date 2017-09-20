@@ -12,7 +12,11 @@ import Alamofire
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     let URL = "http://soylatte.kr:8080"
-
+    var nameTextField: UITextField!
+    var idTextField: UITextField!
+    var pwTextField: UITextField!
+    var pwConfirmTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -63,17 +67,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let pwConfirmField = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.42, width: view.frame.width - 20, height: 50))
 
         //TextField
-        let nameTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.12, width: view.frame.width - 50, height: 50))
+        nameTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.12, width: view.frame.width - 50, height: 50))
         nameTextField.placeholder = "NAME"
         
-        let idTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.22, width: view.frame.width - 50, height: 50))
+        idTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.22, width: view.frame.width - 50, height: 50))
         idTextField.placeholder = "ID"
         
-        let pwTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.32, width: view.frame.width - 50, height: 50))
+        pwTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.32, width: view.frame.width - 50, height: 50))
         pwTextField.placeholder = "PW"
         pwTextField.isSecureTextEntry = true;
         
-        let pwConfirmTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.42, width: view.frame.width - 50, height: 50))
+        pwConfirmTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.42, width: view.frame.width - 50, height: 50))
         pwConfirmTextField.placeholder = "PW CONFIRM"
         pwConfirmTextField.isSecureTextEntry = true;
         
@@ -121,6 +125,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         registerButton.setTitle("regist", for: .normal)
         registerButton.setTitleColor(UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1), for: .normal)
         registerButton.contentHorizontalAlignment = .center
+        registerButton.addTarget(RegisterViewController(), action: #selector(registButtonClicked), for: .touchUpInside)
         view.addSubview(registerButton)
 
 //        let registerImage = UIImageView(frame: CGRect(x: 0, y: view.frame.height * 0.8, width: view.frame.width * 0.8, height: view.frame.height * 0.25))
@@ -154,9 +159,35 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     //회원가입 버튼 실행
     func registButtonClicked(){
+        print("regist")
         
+        if(nameTextField.text == ""){
+            myAlert("Regist FAIL", message: "enter your NAME")
+        }else if(idTextField.text == ""){
+            myAlert("Regist FAIL", message: "enter your ID")
+        }else if(pwTextField.text == ""){
+            myAlert("Regist FAIL", message: "enter your PASSWORD")
+        }else if(pwConfirmTextField.text == ""){
+            myAlert("Regist FAIL", message: "enter your PASSWORD CONFIRM")
+        }else if(pwConfirmTextField.text != pwTextField.text){
+            myAlert("Regist FAIL", message: "confirm your PASSWORD")
+        }else{
+            regist()
+        }
     }
 
+    //Alert 실행
+    func myAlert(_ title : String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func regist(){
+        
+    }
+    
     /*
     // MARK: - Navigation
 
