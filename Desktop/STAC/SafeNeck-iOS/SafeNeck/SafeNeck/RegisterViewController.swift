@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
+
+    let URL = "http://soylatte.kr:8080"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         setNavigationBarView()
         setRegisterInfoView()
         setRegisterButtonView()
+        setAnotherRegistView()
+        setAnotherRegistButtonView()
     }
     
     //기본 UI 세팅
@@ -73,13 +78,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         pwConfirmTextField.isSecureTextEntry = true;
         
         //UIView, TextField 세팅 함수 실행
-        asdf(nameField, nameTextField)
-        asdf(idField, idTextField)
-        asdf(pwField, pwTextField)
-        asdf(pwConfirmField, pwConfirmTextField)
+        registerTextFieldBasicSetting(nameField, nameTextField)
+        registerTextFieldBasicSetting(idField, idTextField)
+        registerTextFieldBasicSetting(pwField, pwTextField)
+        registerTextFieldBasicSetting(pwConfirmField, pwConfirmTextField)
     }
     
-    //다른 방식으로 회원가입
+    //다른 방식으로 회원가입 생성
     func setAnotherRegistView(){
         let longView = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.8 - 10, width: view.frame.width - 20, height: 1))
         longView.backgroundColor = UIColor.gray
@@ -92,6 +97,21 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         anotherRegistLabel.textColor = UIColor.gray
         anotherRegistLabel.backgroundColor = UIColor.white
         view.addSubview(anotherRegistLabel)
+    }
+    
+    //구글, 페이스북, 네이버 회원가입 버튼 생성
+    func setAnotherRegistButtonView(){
+        let googleImage = UIImage(named: "ic_login_google")
+        let googleRegistButton = anotherRegisterUIButton(frame: CGRect(x: 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: googleImage!, getColor: UIColor.red)
+        view.addSubview(googleRegistButton)
+        
+        let naverImage = UIImage(named: "ic_login_naver")
+        let naverRegistButton = anotherRegisterUIButton(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: naverImage!, getColor: UIColor.green)
+        view.addSubview(naverRegistButton)
+        
+        let fbImage = UIImage(named: "ic_login_fb")
+        let facebookRegistButton = anotherRegisterUIButton(frame: CGRect(x: view.frame.width - ((view.frame.width - 40) / 3) - 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: fbImage!, getColor: UIColor.blue)
+        view.addSubview(facebookRegistButton)
     }
     
     //회원가입 버튼 생성
@@ -115,7 +135,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     //회원가입 텍스트필드 기본 세팅
-    func asdf(_ field: UIView, _ textField : UITextField) {
+    func registerTextFieldBasicSetting(_ field: UIView, _ textField : UITextField) {
         field.layer.cornerRadius = 5
         field.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
         field.layer.borderWidth = 1.5
@@ -125,7 +145,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(field)
         view.addSubview(textField)
     }
-    
+
     //리턴 누르면 키보드 없애기
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -150,6 +170,32 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //네이버, 구글, 페이스북 회원가입을 위한 커스텀 UIButton
+    class anotherRegisterUIButton: UIButton {
+        var image: UIImage!
+        
+        init(frame: CGRect, getImage: UIImage, getColor: UIColor) {
+            super.init(frame: frame)
+            self.backgroundColor = .white
+            self.layer.borderWidth = 1
+            self.layer.borderColor = getColor.cgColor
+            self.layer.cornerRadius = 5
+            self.image = getImage
+            setLayOut()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        func setLayOut() {
+            let imageView = UIImageView(frame: CGRect(x: frame.width * 0.5 - 10, y: frame.height * 0.5 - 10, width: 20,  height: 20))
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
+            addSubview(imageView)
+        }
     }
 
 }

@@ -61,10 +61,10 @@ class ViewController: UIViewController {
     
     //회원가입, 로그인 버튼 뷰 생성
     func setButtonView(){
-        let registerButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.7, width: 200, height: view.frame.height * 0.05))
-        registerButton.setTitle("회원가입", for: .normal)
+        let registerButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.7 - 5, width: 200, height: view.frame.height * 0.05))
+        registerButton.setTitle("REGISTER", for: .normal)
         registerButton.setTitleColor(UIColor.black, for: .normal)
-        registerButton.backgroundColor = .white
+//        registerButton.backgroundColor = .white
         registerButton.layer.cornerRadius = 10
         registerButton.layer.shadowColor = UIColor.black.cgColor
         registerButton.layer.shadowOpacity = 0.2
@@ -73,10 +73,10 @@ class ViewController: UIViewController {
         registerButton.addTarget(RegisterViewController(), action: #selector(registerButtonClicked), for: .touchUpInside)
         view.addSubview(registerButton)
         
-        let loginButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.8, width: 200, height: view.frame.height * 0.05))
-        loginButton.setTitle("로그인", for: .normal)
+        let loginButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.8 - 5, width: 200, height: view.frame.height * 0.05))
+        loginButton.setTitle("LOGIN", for: .normal)
         loginButton.setTitleColor(UIColor.black, for: .normal)
-        loginButton.backgroundColor = .white
+//        loginButton.backgroundColor = .white
         loginButton.layer.cornerRadius = 10
         loginButton.layer.shadowColor = UIColor.black.cgColor
         loginButton.layer.shadowOpacity = 0.2

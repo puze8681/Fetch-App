@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         setLoginInfoView()
         setLoginButtonView()
         setAnotherLoginView()
+        setAnotherLoginButtonView()
     }
     
     //기본 UI 세팅
@@ -69,7 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         asdf(pwField, pwTextField)
     }
     
-    //다른 방식으로 로그인
+    //다른 방식으로 로그인 생성
     func setAnotherLoginView(){
         let longView = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.8 - 10, width: view.frame.width - 20, height: 1))
         longView.backgroundColor = UIColor.gray
@@ -82,6 +83,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         anotherLoginLabel.textColor = UIColor.gray
         anotherLoginLabel.backgroundColor = UIColor.white
         view.addSubview(anotherLoginLabel)
+    }
+    
+    //구글, 페이스북, 네이버 로그인 버튼 생성
+    func setAnotherLoginButtonView(){
+        let googleImage = UIImage(named: "ic_login_google")
+        let googleLoginButton = anotherLoginUIButton(frame: CGRect(x: 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: googleImage!, getColor: UIColor.red)
+        view.addSubview(googleLoginButton)
+        
+        let naverImage = UIImage(named: "ic_login_naver")
+        let naverLoginButton = anotherLoginUIButton(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: naverImage!, getColor: UIColor.green)
+        view.addSubview(naverLoginButton)
+        
+        let fbImage = UIImage(named: "ic_login_fb")
+        let facebookLoginButton = anotherLoginUIButton(frame: CGRect(x: view.frame.width - ((view.frame.width - 40) / 3) - 10, y: view.frame.height * 0.8 + 10, width: (view.frame.width - 40) / 3, height: view.frame.height * 0.1 - 20), getImage: fbImage!, getColor: UIColor.blue)
+        view.addSubview(facebookLoginButton)
     }
     
     //로그인 버튼 생성
@@ -136,5 +152,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //네이버, 구글, 페이스북 로그인을 위한 커스텀 UIButton
+    class anotherLoginUIButton: UIButton {
+        var image: UIImage!
+        
+        init(frame: CGRect, getImage: UIImage, getColor: UIColor) {
+            super.init(frame: frame)
+            self.backgroundColor = .white
+            self.layer.borderWidth = 1
+            self.layer.borderColor = getColor.cgColor
+            self.layer.cornerRadius = 5
+            self.image = getImage
+            setLayOut()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        func setLayOut() {
+            let imageView = UIImageView(frame: CGRect(x: frame.width * 0.5 - 10, y: frame.height * 0.5 - 10, width: 20,  height: 20))
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
+            addSubview(imageView)
+        }
+    }
+
 
 }
