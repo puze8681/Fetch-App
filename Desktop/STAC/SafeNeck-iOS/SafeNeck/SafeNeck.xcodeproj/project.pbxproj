@@ -33,6 +33,7 @@
 		838FB0AB1F658F370047E6B6 /* ic_report_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 838FB0961F658F370047E6B6 /* ic_report_on.png */; };
 		83F37DD11F7210550013CCEE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F37DCE1F72100D0013CCEE /* Alamofire.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		83F37DD21F7210550013CCEE /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83F37DCE1F72100D0013CCEE /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		83F37DD51F72C5CA0013CCEE /* FirstLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DD41F72C5CA0013CCEE /* FirstLoginViewController.swift */; };
 		83FFCF411F61A72400B04582 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FFCF401F61A72400B04582 /* AppDelegate.swift */; };
 		83FFCF431F61A72400B04582 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FFCF421F61A72400B04582 /* ViewController.swift */; };
 		83FFCF481F61A72400B04582 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83FFCF471F61A72400B04582 /* Assets.xcassets */; };
@@ -88,6 +89,7 @@
 		838FB0951F658F370047E6B6 /* ic_report_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_report_off.png; sourceTree = "<group>"; };
 		838FB0961F658F370047E6B6 /* ic_report_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_report_on.png; sourceTree = "<group>"; };
 		83F37DCE1F72100D0013CCEE /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83F37DD41F72C5CA0013CCEE /* FirstLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLoginViewController.swift; sourceTree = "<group>"; };
 		83FFCF3D1F61A72400B04582 /* SafeNeck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeNeck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83FFCF401F61A72400B04582 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83FFCF421F61A72400B04582 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				83FFCF401F61A72400B04582 /* AppDelegate.swift */,
 				83FFCF421F61A72400B04582 /* ViewController.swift */,
 				8372ED171F6D86CC00949A6D /* RegisterViewController.swift */,
+				83F37DD41F72C5CA0013CCEE /* FirstLoginViewController.swift */,
 				8372ED1D1F6FBCD100949A6D /* LoginViewController.swift */,
 				83FFCF471F61A72400B04582 /* Assets.xcassets */,
 				83FFCF491F61A72400B04582 /* LaunchScreen.storyboard */,
@@ -360,6 +363,7 @@
 			files = (
 				8372ED1E1F6FBCD100949A6D /* LoginViewController.swift in Sources */,
 				8372ED181F6D86CC00949A6D /* RegisterViewController.swift in Sources */,
+				83F37DD51F72C5CA0013CCEE /* FirstLoginViewController.swift in Sources */,
 				83FFCF431F61A72400B04582 /* ViewController.swift in Sources */,
 				83FFCF411F61A72400B04582 /* AppDelegate.swift in Sources */,
 			);

@@ -1,0 +1,313 @@
+//
+//  FirstLoginViewController.swift
+//  SafeNeck
+//
+//  Created by 박태준 on 2017. 9. 21..
+//  Copyright © 2017년 stac2017. All rights reserved.
+//
+
+import UIKit
+import Alamofire
+
+class FirstLoginViewController: UIViewController, UIPickerViewDelegate {
+
+    let initURL = "http://soylatte.kr:8080/auth/init"
+    var femaleButton : genderUIButton!
+    var maleButton : genderUIButton!
+    
+    var agePickerView : UIPickerView!
+    var positionPickerView : UIPickerView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        setUI()
+    }
+    
+    //UI생성
+    func setUI(){
+        setUISetting()
+        setNavigationBarView()
+        setGenderButtonView()
+        setTopLabelView()
+        setStartButtonView()
+        setInfoSelectLabel()
+    }
+    
+    //기본 UI 세팅
+    func setUISetting(){
+        
+        //배경 색
+        view.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+        
+        //내비게이션 바 아래쪽 뷰 세팅
+        let basicUI = UIView(frame: CGRect(x: 0, y: 64, width: view.frame.width, height: view.frame.height-64))
+        basicUI.backgroundColor = UIColor.white
+        self.view.addSubview(basicUI)
+    }
+    
+    //내비게이션 바 생성
+    func setNavigationBarView(){
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: view.frame.width, height: 44))
+        let navItem = UINavigationItem(title: "INIT ACCOUNT");
+        navBar.setItems([navItem], animated: false);
+        navBar.layer.shadowRadius = 2
+        navBar.backgroundColor = UIColor.white
+        self.view.addSubview(navBar);
+    }
+    
+    //상단 텍스트 라벨 생성
+    func setTopLabelView(){
+        let textLabel1 = UILabel(frame: CGRect(x: 10, y: view.frame.height * 0.1, width: view.frame.width - 20, height: view.frame.height * 0.05))
+        textLabel1.text = "Setting User Information"
+        textLabel1.textColor = UIColor.darkGray
+        view.addSubview(textLabel1)
+        
+        let textLabel2 = UILabel(frame: CGRect(x: 10, y: view.frame.height * 0.13, width: view.frame.width - 20, height: view.frame.height * 0.05))
+        textLabel2.text = "Setting Interface For Better Service"
+        textLabel2.textColor = UIColor.lightGray
+        view.addSubview(textLabel2)
+    }
+    
+    //성별 선택 버튼 생성
+    func setGenderButtonView(){
+        femaleButton = genderUIButton(frame: CGRect(x: 10, y: view.frame.height * 0.2 + 10, width: (view.frame.width * 0.5 - 15), height: view.frame.height * 0.1 - 20) , getText: "FEMALE")
+        femaleButton.addTarget(FirstLoginViewController(), action: #selector(femaleButtonClicked), for: .touchUpInside)
+        femaleButton.isSelected = true
+        femaleButton.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+        femaleButton.genderLabel.textColor = UIColor.white
+        view.addSubview(femaleButton)
+        
+        maleButton = genderUIButton(frame: CGRect(x: (view.frame.width * 0.5 + 5), y: view.frame.height * 0.2 + 10, width: (view.frame.width * 0.5 - 15), height: view.frame.height * 0.1 - 20) , getText: "MALE")
+        maleButton.addTarget(FirstLoginViewController(), action: #selector(maleButtonClicked), for: .touchUpInside)
+        maleButton.isSelected = false
+        maleButton.backgroundColor = UIColor.white
+        maleButton.genderLabel.textColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+        view.addSubview(maleButton)
+    }
+    
+    //나이, 직군 선택 뷰 생성
+    func setInfoSelectLabel(){
+        let ageLabel = selectUIView(frame: CGRect(x: 10, y: view.frame.height * 0.3 + 10, width: (view.frame.width * 0.5 - 15), height: view.frame.height * 0.6 - 30), getText: "AGE", getType: true)
+        view.addSubview(ageLabel)
+        
+        let positionLabel = selectUIView(frame: CGRect(x: (view.frame.width * 0.5 + 5), y: view.frame.height * 0.3 + 10, width: (view.frame.width * 0.5 - 15), height: view.frame.height * 0.6 - 30), getText: "POSITION", getType: false)
+        view.addSubview(positionLabel)
+    }
+    
+    //로그인 버튼 생성
+    func setStartButtonView() {
+        let startButton = UIButton(frame: CGRect(x: 0, y: view.frame.height * 0.9, width: view.frame.width, height: view.frame.height * 0.1))
+        startButton.setTitle("start", for: .normal)
+        startButton.setTitleColor(UIColor.white, for: .normal)
+        startButton.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+        startButton.contentHorizontalAlignment = .center
+        startButton.addTarget(FirstLoginViewController(), action: #selector(startButtonClicked), for: .touchUpInside)
+        view.addSubview(startButton)
+    }
+
+    //여성 선택 버튼 실행
+    func femaleButtonClicked(){
+        if(femaleButton.isSelected){
+        }else{
+            femaleButton.isSelected = true
+            maleButton.isSelected = false
+            femaleButton.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+            femaleButton.genderLabel.textColor = UIColor.white
+            maleButton.backgroundColor = UIColor.white
+            maleButton.genderLabel.textColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+        }
+    }
+    
+    //남성 선택 버튼 실행
+    func maleButtonClicked(){
+        if(maleButton.isSelected){
+        }else{
+            maleButton.isSelected = true
+            femaleButton.isSelected = false
+            maleButton.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+            maleButton.genderLabel.textColor = UIColor.white
+            femaleButton.backgroundColor = UIColor.white
+            femaleButton.genderLabel.textColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+        }
+    }
+    
+    //시작 버튼 실행
+    func startButtonClicked(){
+        print("start")
+        
+//        if(idTextField.text == ""){
+//            myAlert("Login FAIL", message: "enter your ID")
+//        }else if(pwTextField.text == ""){
+//            myAlert("Login FAIL", message: "enter your PASSWORD")
+//        }else{
+//            start(idTextField.text!, pwTextField.text!)
+//        }
+    }
+    
+    //Alert 실행
+    func myAlert(_ title : String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //시작하기
+    func start(_ id: String, _ pw: String){
+//        let parameters = [
+//            "id" : id,
+//            "password" : pw,
+//            ] as [String : Any]
+        
+//        Alamofire.request(loginURL, method: .post, parameters: parameters).responseJSON
+//            {
+//                response in
+//                print(response)
+//                let stringStatusCode = String(describing: response.response?.statusCode)
+//                //printing response
+//                if(response.response?.statusCode == 200){
+//                    self.myAlert("Start SUCCESS", message: "WELCOME - SAFE NECK")
+//                    self.navigationController?.popViewController(animated: true)
+//                }else{
+//                    print("STATUS CODE : " + stringStatusCode)
+//                    self.myAlert("Start FAIL", message:"SERVER ERROR")
+//                }
+//        }
+    }
+    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    //성별 선택을 위한 커스텀 UIButton
+    class genderUIButton: UIButton {
+        
+        var text : String!
+        var genderLabel : UILabel!
+        
+        init(frame: CGRect, getText: String) {
+            super.init(frame: frame)
+            self.backgroundColor = .white
+            self.layer.borderWidth = 1
+            self.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
+            self.layer.cornerRadius = 5
+            self.text = getText
+            setLayOut()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        func setLayOut() {
+            genderLabel = UILabel(frame: CGRect(x: frame.width * 0.5 - 40, y: frame.height * 0.5 - 10, width: 80,  height: 20))
+            genderLabel.text = text
+            genderLabel.textAlignment = NSTextAlignment.center
+            addSubview(genderLabel)
+        }
+    }
+    
+    //나이, 직군 선택을 위한 커스텀 UIView
+    class selectUIView: UIView {
+        
+        var text: String!
+        var type: Bool!
+        var label : UILabel!
+        var subLable: UILabel!
+        let ageStringValue: [String] = ["10대", "20대", "30대", "40대", "50대", "60대", "70 이상"]
+        let positionStringValue: [String] = ["(초,중,고) 학생", "대학생", "직장인", "일반인"]
+        
+        init(frame: CGRect, getText: String, getType: Bool){
+            super.init(frame: frame)
+            self.text = getText
+            self.type = getType
+            self.backgroundColor = .white
+            self.layer.borderWidth = 1
+            self.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
+            self.layer.cornerRadius = 5
+            setLabelLayOut()
+            setPickerViewLayOut()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        func setLabelLayOut(){
+            label = UILabel(frame: CGRect(x: 10, y: 5, width: frame.width - 20, height: 30))
+            label.text = text
+            label.textColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+            label.textAlignment = NSTextAlignment.center
+            addSubview(label)
+            
+            subLable = UILabel(frame: CGRect(x: 10, y: 35, width: frame.width - 20, height: 30))
+            subLable.textColor = UIColor.darkGray
+            subLable.textAlignment = NSTextAlignment.center
+            addSubview(subLable)
+        }
+        
+        func setPickerViewLayOut(){
+            let pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: frame.width - 20, height: frame.height - 60))
+
+            func numberOfComponents(in: UIPickerView)->Int{
+                return 1
+            }
+            
+            func pickerView(_: UIPickerView , numberOfRowsInComponent: Int)->Int{
+                if(type){
+                    return 7
+                }else{
+                    return 5
+                }
+            }
+            
+            func pickerView(_: UIPickerView, attributedTitleForRow: Int, forComponent: Int)->NSAttributedString!{
+                let stringColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+                let attributes = [NSForegroundColorAttributeName: stringColor]
+                var showString: NSMutableAttributedString!
+                if(type){
+                    showString = NSMutableAttributedString(string: ageStringValue[attributedTitleForRow], attributes:attributes)
+                }else{
+                    showString = NSMutableAttributedString(string: positionStringValue[attributedTitleForRow], attributes:attributes)
+                }
+                
+                return showString
+            }
+            
+            func pickerView(_: UIPickerView, didSelectRow: Int, inComponent: Int){
+                if(type){
+                    switch didSelectRow {
+                    case 0...6:
+                        subLable.text = "Your AGE is " + ageStringValue[didSelectRow]
+                        break
+                    default:
+                        break
+                    }
+                }else{
+                    switch didSelectRow {
+                    case 0...4:
+                        subLable.text = "Your POSITION is " + positionStringValue[didSelectRow]
+                        break
+                    default:
+                        break
+                    }
+                }
+                
+            }
+            addSubview(pickerView)
+        }
+    }
+}

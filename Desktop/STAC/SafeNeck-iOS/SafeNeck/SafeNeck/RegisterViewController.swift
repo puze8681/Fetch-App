@@ -200,8 +200,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 let stringStatusCode = String(describing: response.response?.statusCode)
                 //printing response
                 if(response.response?.statusCode == 200){
+                    self.navigationController?.pushViewController(FirstLoginViewController(), animated: true)
                     self.myAlert("Regist SUCCESS", message: "WELCOME - SAFE NECK")
-                    self.navigationController?.popViewController(animated: true)
                 }else{
                     print("STATUS CODE : " + stringStatusCode)
                     self.myAlert("Regist FAIL", message:"SERVER ERROR")
