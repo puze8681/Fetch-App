@@ -69,16 +69,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         //TextField
         nameTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.12, width: view.frame.width - 50, height: 50))
         nameTextField.placeholder = "NAME"
+        nameTextField.font = UIFont(name: "NanumBarunGothicOTFLight", size: 16)
         
         idTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.22, width: view.frame.width - 50, height: 50))
         idTextField.placeholder = "ID"
+        idTextField.font = UIFont(name: "NanumBarunGothicOTFLight", size: 16)
         
         pwTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.32, width: view.frame.width - 50, height: 50))
         pwTextField.placeholder = "PW"
+        pwTextField.font = UIFont(name: "NanumBarunGothicOTFLight", size: 16)
         pwTextField.isSecureTextEntry = true;
         
         pwConfirmTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.42, width: view.frame.width - 50, height: 50))
         pwConfirmTextField.placeholder = "PW CONFIRM"
+        pwConfirmTextField.font = UIFont(name: "NanumBarunGothicOTFLight", size: 16)
         pwConfirmTextField.isSecureTextEntry = true;
         
         //UIView, TextField 세팅 함수 실행
@@ -95,9 +99,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(longView)
         
-        let anotherRegistLabel = UILabel(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 - 14, width: (view.frame.width - 40) / 3, height: 10))
-        anotherRegistLabel.text = "다른 방식으로 회원가입"
-        anotherRegistLabel.font = UIFont(name: "NanumBarunGothic", size: 10 )
+        let anotherRegistLabel = UILabel(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 - 14, width: (view.frame.width - 40) / 3, height: 15))
+        anotherRegistLabel.text = "Regist with another way"
+        anotherRegistLabel.font = UIFont(name: "NanumBarunGothicOTF", size: 10)
         anotherRegistLabel.textAlignment = NSTextAlignment.center
         anotherRegistLabel.textColor = UIColor.gray
         anotherRegistLabel.backgroundColor = UIColor.white
@@ -125,6 +129,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         let registerButton = UIButton(frame: CGRect(x: 0, y: view.frame.height * 0.9, width: view.frame.width, height: view.frame.height * 0.1))
         registerButton.setTitle("regist", for: .normal)
+        registerButton.titleLabel?.font = UIFont(name: "NanumBarunGothicOTFUltraLight", size: 16)
         registerButton.setTitleColor(UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1), for: .normal)
         registerButton.contentHorizontalAlignment = .center
         registerButton.addTarget(RegisterViewController(), action: #selector(registButtonClicked), for: .touchUpInside)

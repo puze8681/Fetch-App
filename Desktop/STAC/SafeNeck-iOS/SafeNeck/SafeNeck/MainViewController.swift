@@ -57,6 +57,7 @@ class MainViewController: UIViewController {
     func setNoticeNumView(){
         let todayNoticeUIView: NoticeUIView = NoticeUIView(frame: CGRect(x: 10, y: view.frame.height * 0.1, width: view.frame.width * 0.5 - 20, height: view.frame.height * 0.2), getTitle: "오늘 받은 알림 개수", getContent: "일간 알림 개수 목표치는 15회입니다.", getColor: UIColor.white)
         view.addSubview(todayNoticeUIView)
+        print("setNoticeNumView")
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,7 +85,7 @@ class MainViewController: UIViewController {
         
         init(frame: CGRect, getTitle: String, getContent: String, getColor: UIColor) {
             super.init(frame: frame)
-            self.backgroundColor = getColor
+            self.backgroundColor = UIColor.red
             self.layer.borderWidth = 0
             self.layer.cornerRadius = 10
             self.layer.shadowColor = UIColor.gray.cgColor
@@ -102,15 +103,19 @@ class MainViewController: UIViewController {
             titleLabel.text = self.title
             titleLabel.textColor = UIColor(red: 30, green: 181, blue: 148, alpha: 1)
             addSubview(titleLabel)
+            print("titleLabel")
             
             let contentLabel = UILabel(frame: CGRect(x: 10, y: frame.height * 0.2 + 20, width: frame.width - 20, height: frame.height * 0.1))
             contentLabel.text = self.content
             contentLabel.textColor = UIColor(red: 126, green: 213, blue: 194, alpha: 1)
             addSubview(contentLabel)
-            
+            print("contentLabel")
+
             noticeNumLabel = UILabel(frame: CGRect(x: 10, y: frame.height * 0.3 + 40, width: frame.width - 20, height: frame.height * 0.5))
             noticeNumLabel.textColor = UIColor(red: 30, green: 181, blue: 148, alpha: 1)
             addSubview(noticeNumLabel)
+            print("noticeNumLabel")
+
         }
     }
 

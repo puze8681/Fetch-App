@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //내비게이션 바 생성
     func setNavigationBarView(){
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: view.frame.width, height: 44))
-        let navItem = UINavigationItem(title: "로그인");
+        let navItem = UINavigationItem(title: "LOGIN");
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: nil, action: #selector(backButtonClicked));
         navItem.leftBarButtonItem = doneItem;
         navBar.setItems([navItem], animated: false);
@@ -65,9 +65,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //TextField
         idTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.12, width: view.frame.width - 50, height: 50))
         idTextField.placeholder = "ID"
+        idTextField.font = UIFont(name: "NanumBarunGothicOTFLight", size: 16)
         
         pwTextField = UITextField(frame: CGRect(x: 25, y: view.frame.height * 0.22, width: view.frame.width - 50, height: 50))
         pwTextField.placeholder = "PW"
+        pwTextField.font = UIFont(name: "NanumBarunGothicOTFLight", size: 16)
         pwTextField.isSecureTextEntry = true;
         
         //UIView, TextField 세팅 함수 실행
@@ -81,9 +83,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         longView.backgroundColor = UIColor.gray
         view.addSubview(longView)
 
-        let anotherLoginLabel = UILabel(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 - 14, width: (view.frame.width - 40) / 3, height: 10))
-        anotherLoginLabel.text = "다른 방식으로 로그인"
-        anotherLoginLabel.font = UIFont(name: "NanumBarunGothic", size: 10 )
+        let anotherLoginLabel = UILabel(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 - 14, width: (view.frame.width - 40) / 3, height: 15))
+        anotherLoginLabel.text = "Login with another way"
+        anotherLoginLabel.font = UIFont(name: "NanumBarunGothicOTF", size: 10)
         anotherLoginLabel.textAlignment = NSTextAlignment.center
         anotherLoginLabel.textColor = UIColor.gray
         anotherLoginLabel.backgroundColor = UIColor.white
@@ -110,6 +112,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let loginButton = UIButton(frame: CGRect(x: 0, y: view.frame.height * 0.9, width: view.frame.width, height: view.frame.height * 0.1))
         loginButton.setTitle("login", for: .normal)
         loginButton.setTitleColor(UIColor.white, for: .normal)
+        loginButton.titleLabel?.font = UIFont(name: "NanumBarunGothicOTFUltraLight", size: 16)
         loginButton.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
         loginButton.contentHorizontalAlignment = .center
         loginButton.addTarget(LoginViewController(), action: #selector(loginButtonClicked), for: .touchUpInside)

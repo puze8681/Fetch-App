@@ -38,6 +38,10 @@
 		83F37DD91F75719A0013CCEE /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DD81F75719A0013CCEE /* OptionViewController.swift */; };
 		83F37DDB1F7571BE0013CCEE /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DDA1F7571BE0013CCEE /* TabBarViewController.swift */; };
 		83F37DDD1F7571E00013CCEE /* DailyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DDC1F7571E00013CCEE /* DailyReportViewController.swift */; };
+		83F37DDE1F75B2D50013CCEE /* NanumBarunGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8372ED191F6EB04000949A6D /* NanumBarunGothic.otf */; };
+		83F37DDF1F75B2D80013CCEE /* NanumBarunGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8372ED1A1F6EB04000949A6D /* NanumBarunGothicBold.otf */; };
+		83F37DE01F75B2DB0013CCEE /* NanumBarunGothicLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8372ED1B1F6EB04000949A6D /* NanumBarunGothicLight.otf */; };
+		83F37DE11F75B2DD0013CCEE /* NanumBarunGothicUltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8372ED1C1F6EB04000949A6D /* NanumBarunGothicUltraLight.otf */; };
 		83FFCF411F61A72400B04582 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FFCF401F61A72400B04582 /* AppDelegate.swift */; };
 		83FFCF431F61A72400B04582 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FFCF421F61A72400B04582 /* ViewController.swift */; };
 		83FFCF481F61A72400B04582 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83FFCF471F61A72400B04582 /* Assets.xcassets */; };
@@ -291,6 +295,7 @@
 				838FB0A21F658F370047E6B6 /* ic_login_fb.png in Resources */,
 				838FB09B1F658F370047E6B6 /* ic_daily_comment.png in Resources */,
 				838FB0A61F658F370047E6B6 /* ic_main_on.png in Resources */,
+				83F37DDF1F75B2D80013CCEE /* NanumBarunGothicBold.otf in Resources */,
 				838FB0A11F658F370047E6B6 /* ic_firstlogin_expand.png in Resources */,
 				838FB0AA1F658F370047E6B6 /* ic_report_off.png in Resources */,
 				838FB0A41F658F370047E6B6 /* ic_login_naver.png in Resources */,
@@ -302,6 +307,8 @@
 				838FB09A1F658F370047E6B6 /* ic_daily_bad.png in Resources */,
 				838FB09D1F658F370047E6B6 /* ic_daily_next.png in Resources */,
 				838FB0A01F658F370047E6B6 /* ic_daily_standard.png in Resources */,
+				83F37DE11F75B2DD0013CCEE /* NanumBarunGothicUltraLight.otf in Resources */,
+				83F37DDE1F75B2D50013CCEE /* NanumBarunGothic.otf in Resources */,
 				838FB0A71F658F370047E6B6 /* ic_option off.png in Resources */,
 				838FB09E1F658F370047E6B6 /* ic_daily_sobad.png in Resources */,
 				838FB0A81F658F370047E6B6 /* ic_option_on.png in Resources */,
@@ -309,6 +316,7 @@
 				83FFCF4B1F61A72400B04582 /* LaunchScreen.storyboard in Resources */,
 				83FFCF481F61A72400B04582 /* Assets.xcassets in Resources */,
 				838FB0981F658F370047E6B6 /* bg_logon_logo.png in Resources */,
+				83F37DE01F75B2DB0013CCEE /* NanumBarunGothicLight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

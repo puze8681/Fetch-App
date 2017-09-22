@@ -16,6 +16,17 @@ class ViewController: UIViewController {
                 setUI()
     }
     
+    func findFont(){
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
+    }
+    
     //UI 생성
     func setUI(){
         setUISetting()
@@ -46,14 +57,14 @@ class ViewController: UIViewController {
     func setSlogunView() {
         let titleLabel = UILabel(frame: CGRect(x: 0, y: view.frame.height * 0.8, width: view.frame.width, height: view.frame.height * 0.25))
         titleLabel.text = "STA + C 2017"
-        titleLabel.font = UIFont(name: "NanumBarunGothicBold", size: 20.0)
+        titleLabel.font = UIFont(name: "NanumBarunGothicOTFBold", size: 12)
         titleLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         titleLabel.textAlignment = NSTextAlignment.center
         view.addSubview(titleLabel)
         
         let contentLabel = UILabel(frame: CGRect(x: 0, y: view.frame.height * 0.8, width: view.frame.width, height: view.frame.height * 0.31))
         contentLabel.text = "선린인터넷고등학교 팀 Safe neck"
-        contentLabel.font = UIFont(name: "NanumBarunGothicLight", size: 8.0)
+        contentLabel.font = UIFont(name: "NanumBarunGothicOTFLight", size: 12)
         contentLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         contentLabel.textAlignment = NSTextAlignment.center
         view.addSubview(contentLabel)
@@ -64,7 +75,7 @@ class ViewController: UIViewController {
         let registerButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.7 - 5, width: 200, height: view.frame.height * 0.05))
         registerButton.setTitle("REGISTER", for: .normal)
         registerButton.setTitleColor(UIColor.black, for: .normal)
-//        registerButton.backgroundColor = .white
+        registerButton.titleLabel?.font = UIFont(name: "NanumBarunGothicOTF", size: 16)
         registerButton.layer.cornerRadius = 10
         registerButton.layer.shadowColor = UIColor.black.cgColor
         registerButton.layer.shadowOpacity = 0.2
@@ -76,7 +87,7 @@ class ViewController: UIViewController {
         let loginButton = UIButton(frame: CGRect(x: view.frame.width * 0.5 - 100, y: view.frame.height * 0.8 - 5, width: 200, height: view.frame.height * 0.05))
         loginButton.setTitle("LOGIN", for: .normal)
         loginButton.setTitleColor(UIColor.black, for: .normal)
-//        loginButton.backgroundColor = .white
+        loginButton.titleLabel?.font = UIFont(name: "NanumBarunGothicOTF", size: 16)
         loginButton.layer.cornerRadius = 10
         loginButton.layer.shadowColor = UIColor.black.cgColor
         loginButton.layer.shadowOpacity = 0.2

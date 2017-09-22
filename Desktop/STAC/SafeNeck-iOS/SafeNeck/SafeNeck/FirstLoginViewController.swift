@@ -63,13 +63,15 @@ class FirstLoginViewController: UIViewController{
     
     //상단 텍스트 라벨 생성
     func setTopLabelView(){
-        let textLabel1 = UILabel(frame: CGRect(x: 10, y: view.frame.height * 0.1, width: view.frame.width - 20, height: view.frame.height * 0.05))
+        let textLabel1 = UILabel(frame: CGRect(x: 10, y: view.frame.height * 0.12, width: view.frame.width - 20, height: view.frame.height * 0.05))
         textLabel1.text = "Setting User Information"
+        textLabel1.font = UIFont(name: "NanumBarunGothicOTFBold", size: 16)
         textLabel1.textColor = UIColor.darkGray
         view.addSubview(textLabel1)
         
-        let textLabel2 = UILabel(frame: CGRect(x: 10, y: view.frame.height * 0.13, width: view.frame.width - 20, height: view.frame.height * 0.05))
+        let textLabel2 = UILabel(frame: CGRect(x: 10, y: view.frame.height * 0.15, width: view.frame.width - 20, height: view.frame.height * 0.05))
         textLabel2.text = "Setting Interface For Better Service"
+        textLabel2.font = UIFont(name: "NanumBarunGothicOTFLight", size: 12)
         textLabel2.textColor = UIColor.lightGray
         view.addSubview(textLabel2)
     }
@@ -106,6 +108,7 @@ class FirstLoginViewController: UIViewController{
         startButton.setTitle("start", for: .normal)
         startButton.setTitleColor(UIColor.white, for: .normal)
         startButton.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+        startButton.titleLabel?.font = UIFont(name: "NanumBarunGothicOTFLight", size: 16)
         startButton.contentHorizontalAlignment = .center
         startButton.addTarget(FirstLoginViewController(), action: #selector(startButtonClicked), for: .touchUpInside)
         view.addSubview(startButton)
@@ -233,6 +236,7 @@ class FirstLoginViewController: UIViewController{
         func setLayOut() {
             genderLabel = UILabel(frame: CGRect(x: frame.width * 0.5 - 40, y: frame.height * 0.5 - 10, width: 80,  height: 20))
             genderLabel.text = text
+            genderLabel.font = UIFont(name: "NanumBarunGothicOTFBold", size: 12)
             genderLabel.textAlignment = NSTextAlignment.center
             addSubview(genderLabel)
         }
@@ -262,9 +266,11 @@ class FirstLoginViewController: UIViewController{
             switch row {
             case 0...6:
                 subLable.text = "Your AGE is " + ageStringValue[row]
+                subLable.font = UIFont(name: "NanumBarunGothicOTF", size: 14)
                 break
             default:
                 subLable.text = "Choose your AGE"
+                subLable.font = UIFont(name: "NanumBarunGothicOTF", size: 14)
                 break
             }
         }
@@ -288,12 +294,14 @@ class FirstLoginViewController: UIViewController{
         func setLabelLayOut(){
             label = UILabel(frame: CGRect(x: 10, y: 5, width: frame.width - 20, height: 30))
             label.text = text
+            label.font = UIFont(name: "NanumBarunGothicOTF", size: 16)
             label.textColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
             label.textAlignment = NSTextAlignment.center
             addSubview(label)
             
             subLable = UILabel(frame: CGRect(x: 10, y: 35, width: frame.width - 20, height: 30))
             subLable.textColor = UIColor.darkGray
+            label.font = UIFont(name: "NanumBarunGothicOTF", size: 16)
             subLable.textAlignment = NSTextAlignment.center
             addSubview(subLable)
         }
@@ -349,12 +357,14 @@ class FirstLoginViewController: UIViewController{
         func setLabelLayOut(){
             label = UILabel(frame: CGRect(x: 10, y: 5, width: frame.width - 20, height: 30))
             label.text = text
+            label.font = UIFont(name: "NanumBarunGothicOTF", size: 16)
             label.textColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
             label.textAlignment = NSTextAlignment.center
             addSubview(label)
             
             subLable = UILabel(frame: CGRect(x: 10, y: 35, width: frame.width - 20, height: 30))
             subLable.textColor = UIColor.darkGray
+            subLable.font = UIFont(name: "NanumBarunGothicOTF", size: 16)
             subLable.textAlignment = NSTextAlignment.center
             addSubview(subLable)
         }
