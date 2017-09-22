@@ -35,6 +35,9 @@
 		83F37DD21F7210550013CCEE /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83F37DCE1F72100D0013CCEE /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		83F37DD51F72C5CA0013CCEE /* FirstLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DD41F72C5CA0013CCEE /* FirstLoginViewController.swift */; };
 		83F37DD71F74E72C0013CCEE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DD61F74E72C0013CCEE /* MainViewController.swift */; };
+		83F37DD91F75719A0013CCEE /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DD81F75719A0013CCEE /* OptionViewController.swift */; };
+		83F37DDB1F7571BE0013CCEE /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DDA1F7571BE0013CCEE /* TabBarViewController.swift */; };
+		83F37DDD1F7571E00013CCEE /* DailyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F37DDC1F7571E00013CCEE /* DailyReportViewController.swift */; };
 		83FFCF411F61A72400B04582 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FFCF401F61A72400B04582 /* AppDelegate.swift */; };
 		83FFCF431F61A72400B04582 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FFCF421F61A72400B04582 /* ViewController.swift */; };
 		83FFCF481F61A72400B04582 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83FFCF471F61A72400B04582 /* Assets.xcassets */; };
@@ -92,6 +95,9 @@
 		83F37DCE1F72100D0013CCEE /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F37DD41F72C5CA0013CCEE /* FirstLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLoginViewController.swift; sourceTree = "<group>"; };
 		83F37DD61F74E72C0013CCEE /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		83F37DD81F75719A0013CCEE /* OptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
+		83F37DDA1F7571BE0013CCEE /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		83F37DDC1F7571E00013CCEE /* DailyReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyReportViewController.swift; sourceTree = "<group>"; };
 		83FFCF3D1F61A72400B04582 /* SafeNeck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeNeck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83FFCF401F61A72400B04582 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83FFCF421F61A72400B04582 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,10 +202,13 @@
 				8372ED1D1F6FBCD100949A6D /* LoginViewController.swift */,
 				8372ED171F6D86CC00949A6D /* RegisterViewController.swift */,
 				83F37DD41F72C5CA0013CCEE /* FirstLoginViewController.swift */,
-				83F37DD61F74E72C0013CCEE /* MainViewController.swift */,
 				83FFCF471F61A72400B04582 /* Assets.xcassets */,
 				83FFCF491F61A72400B04582 /* LaunchScreen.storyboard */,
 				83FFCF4C1F61A72400B04582 /* Info.plist */,
+				83F37DDA1F7571BE0013CCEE /* TabBarViewController.swift */,
+				83F37DDC1F7571E00013CCEE /* DailyReportViewController.swift */,
+				83F37DD61F74E72C0013CCEE /* MainViewController.swift */,
+				83F37DD81F75719A0013CCEE /* OptionViewController.swift */,
 			);
 			path = SafeNeck;
 			sourceTree = "<group>";
@@ -364,12 +373,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F37DDB1F7571BE0013CCEE /* TabBarViewController.swift in Sources */,
 				8372ED1E1F6FBCD100949A6D /* LoginViewController.swift in Sources */,
 				8372ED181F6D86CC00949A6D /* RegisterViewController.swift in Sources */,
 				83F37DD51F72C5CA0013CCEE /* FirstLoginViewController.swift in Sources */,
 				83F37DD71F74E72C0013CCEE /* MainViewController.swift in Sources */,
+				83F37DD91F75719A0013CCEE /* OptionViewController.swift in Sources */,
 				83FFCF431F61A72400B04582 /* ViewController.swift in Sources */,
 				83FFCF411F61A72400B04582 /* AppDelegate.swift in Sources */,
+				83F37DDD1F7571E00013CCEE /* DailyReportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

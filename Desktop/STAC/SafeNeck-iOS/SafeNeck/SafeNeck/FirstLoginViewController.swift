@@ -141,7 +141,7 @@ class FirstLoginViewController: UIViewController{
     func startButtonClicked(){
         print("start")
     
-        let myViewController = MainViewController()
+        let myViewController = TabBarViewController()
         let navController = UINavigationController(rootViewController: myViewController)
         self.present(navController, animated:true, completion: nil)
         
@@ -168,7 +168,7 @@ class FirstLoginViewController: UIViewController{
     //시작하기
     func start(_ id: String, _ pw: String){
         
-        let myViewController = MainViewController()
+        let myViewController = TabBarViewController()
         let navController = UINavigationController(rootViewController: myViewController)
         self.present(navController, animated:true, completion: nil)
 
