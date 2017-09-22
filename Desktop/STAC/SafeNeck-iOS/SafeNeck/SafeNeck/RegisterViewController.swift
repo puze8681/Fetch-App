@@ -92,6 +92,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func setAnotherRegistView(){
         let longView = UIView(frame: CGRect(x: 10, y: view.frame.height * 0.8 - 10, width: view.frame.width - 20, height: 1))
         longView.backgroundColor = UIColor.gray
+        
         view.addSubview(longView)
         
         let anotherRegistLabel = UILabel(frame: CGRect(x: (view.frame.width * 0.5) - (((view.frame.width - 40) / 3) * 0.5), y: view.frame.height * 0.8 - 14, width: (view.frame.width - 40) / 3, height: 10))
@@ -161,20 +162,21 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     //회원가입 버튼 실행
     func registButtonClicked(){
         print("regist")
-        
-        if(nameTextField.text == ""){
-            myAlert("Regist FAIL", message: "enter your NAME")
-        }else if(idTextField.text == ""){
-            myAlert("Regist FAIL", message: "enter your ID")
-        }else if(pwTextField.text == ""){
-            myAlert("Regist FAIL", message: "enter your PASSWORD")
-        }else if(pwConfirmTextField.text == ""){
-            myAlert("Regist FAIL", message: "enter your PASSWORD CONFIRM")
-        }else if(pwConfirmTextField.text != pwTextField.text){
-            myAlert("Regist FAIL", message: "confirm your PASSWORD")
-        }else{
-            regist(nameTextField.text!, idTextField.text!, pwTextField.text!, pwConfirmTextField.text!)
-        }
+        self.navigationController?.pushViewController(FirstLoginViewController(), animated: true)
+
+//        if(nameTextField.text == ""){
+//            myAlert("Regist FAIL", message: "enter your NAME")
+//        }else if(idTextField.text == ""){
+//            myAlert("Regist FAIL", message: "enter your ID")
+//        }else if(pwTextField.text == ""){
+//            myAlert("Regist FAIL", message: "enter your PASSWORD")
+//        }else if(pwConfirmTextField.text == ""){
+//            myAlert("Regist FAIL", message: "enter your PASSWORD CONFIRM")
+//        }else if(pwConfirmTextField.text != pwTextField.text){
+//            myAlert("Regist FAIL", message: "confirm your PASSWORD")
+//        }else{
+//            regist(nameTextField.text!, idTextField.text!, pwTextField.text!, pwConfirmTextField.text!)
+//        }
     }
 
     //Alert 실행

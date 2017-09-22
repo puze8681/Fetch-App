@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class FirstLoginViewController: UIViewController, UIPickerViewDelegate {
+class FirstLoginViewController: UIViewController{
 
     let initURL = "http://soylatte.kr:8080/auth/init"
     var femaleButton : genderUIButton!
@@ -18,6 +18,10 @@ class FirstLoginViewController: UIViewController, UIPickerViewDelegate {
     var agePickerView : UIPickerView!
     var positionPickerView : UIPickerView!
 
+    var age: String!
+    var gender: String!
+    var position: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,10 +93,10 @@ class FirstLoginViewController: UIViewController, UIPickerViewDelegate {
     
     //나이, 직군 선택 뷰 생성
     func setInfoSelectLabel(){
-        let ageLabel = selectUIView(frame: CGRect(x: 10, y: view.frame.height * 0.3 + 10, width: (view.frame.width * 0.5 - 15), height: view.frame.height * 0.6 - 30), getText: "AGE", getType: true)
+        let ageLabel = ageSelectUIView(frame: CGRect(x: 10, y: view.frame.height * 0.3 + 10, width: (view.frame.width * 0.5 - 15), height: view.frame.height * 0.6 - 30), getText: "AGE")
         view.addSubview(ageLabel)
         
-        let positionLabel = selectUIView(frame: CGRect(x: (view.frame.width * 0.5 + 5), y: view.frame.height * 0.3 + 10, width: (view.frame.width * 0.5 - 15), height: view.frame.height * 0.6 - 30), getText: "POSITION", getType: false)
+        let positionLabel = positionSelectUIView(frame: CGRect(x: (view.frame.width * 0.5 + 5), y: view.frame.height * 0.3 + 10, width: (view.frame.width * 0.5 - 15), height: view.frame.height * 0.6 - 30), getText: "POSITION")
         view.addSubview(positionLabel)
     }
     
@@ -136,7 +140,14 @@ class FirstLoginViewController: UIViewController, UIPickerViewDelegate {
     //시작 버튼 실행
     func startButtonClicked(){
         print("start")
+    
+        let myViewController = MainViewController()
+        let navController = UINavigationController(rootViewController: myViewController)
+        self.present(navController, animated:true, completion: nil)
         
+        print("myViewController : ",myViewController)
+        print("navController : ",navController)
+
 //        if(idTextField.text == ""){
 //            myAlert("Login FAIL", message: "enter your ID")
 //        }else if(pwTextField.text == ""){
@@ -156,6 +167,13 @@ class FirstLoginViewController: UIViewController, UIPickerViewDelegate {
     
     //시작하기
     func start(_ id: String, _ pw: String){
+        
+        let myViewController = MainViewController()
+        let navController = UINavigationController(rootViewController: myViewController)
+        self.present(navController, animated:true, completion: nil)
+
+        print("myViewController : ",myViewController)
+        print("navController : ",navController)
 //        let parameters = [
 //            "id" : id,
 //            "password" : pw,
@@ -220,26 +238,47 @@ class FirstLoginViewController: UIViewController, UIPickerViewDelegate {
         }
     }
     
-    //나이, 직군 선택을 위한 커스텀 UIView
-    class selectUIView: UIView {
+    //나이 선택을 위한 커스텀 UIView
+    class ageSelectUIView: UIView, UIPickerViewDelegate, UIPickerViewDataSource{
         
         var text: String!
-        var type: Bool!
         var label : UILabel!
         var subLable: UILabel!
         let ageStringValue: [String] = ["10대", "20대", "30대", "40대", "50대", "60대", "70 이상"]
-        let positionStringValue: [String] = ["(초,중,고) 학생", "대학생", "직장인", "일반인"]
+        var pickerView: UIPickerView!
+
+        func numberOfComponents(in pickerView: UIPickerView)->Int{
+            return 1
+        }
         
-        init(frame: CGRect, getText: String, getType: Bool){
+        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int)->String?{
+            return ageStringValue[row]
+        }
+        
+        func pickerView(_ pickerView: UIPickerView , numberOfRowsInComponent component: Int)->Int{
+            return ageStringValue.count
+        }
+        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+            switch row {
+            case 0...6:
+                subLable.text = "Your AGE is " + ageStringValue[row]
+                break
+            default:
+                subLable.text = "Choose your AGE"
+                break
+            }
+        }
+
+        init(frame: CGRect, getText: String){
             super.init(frame: frame)
             self.text = getText
-            self.type = getType
             self.backgroundColor = .white
             self.layer.borderWidth = 1
             self.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
             self.layer.cornerRadius = 5
+            self.pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: frame.width - 20, height: frame.height - 60))
+            addSubview(self.pickerView)
             setLabelLayOut()
-            setPickerViewLayOut()
         }
         
         required init?(coder aDecoder: NSCoder) {
@@ -258,56 +297,74 @@ class FirstLoginViewController: UIViewController, UIPickerViewDelegate {
             subLable.textAlignment = NSTextAlignment.center
             addSubview(subLable)
         }
-        
-        func setPickerViewLayOut(){
-            let pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: frame.width - 20, height: frame.height - 60))
+    }
 
-            func numberOfComponents(in: UIPickerView)->Int{
-                return 1
+    //포지션 선택을 위한 커스텀 UIView
+    class positionSelectUIView: UIView, UIPickerViewDelegate, UIPickerViewDataSource{
+        
+        var text: String!
+        var label : UILabel!
+        var subLable: UILabel!
+        let positionStringValue: [String] = ["(초,중,고) 학생", "대학생", "직장인", "일반인"]
+        var pickerView: UIPickerView!
+        
+        func numberOfComponents(in pickerView: UIPickerView)->Int{
+            return 1
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int)->String?{
+            return positionStringValue[row]
+        }
+        
+        func pickerView(_ pickerView: UIPickerView , numberOfRowsInComponent component: Int)->Int{
+            return positionStringValue.count
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+            switch row {
+            case 0...4:
+                subLable.text = "Your POSITION is " + positionStringValue[row]
+                break
+            default:
+                subLable.text = "Choose your POSITION"
             }
+        }
+
+        init(frame: CGRect, getText: String){
+            super.init(frame: frame)
+            self.text = getText
+            self.backgroundColor = .white
+            self.layer.borderWidth = 1
+            self.layer.borderColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1).cgColor
+            self.layer.cornerRadius = 5
+            self.pickerView = UIPickerView(frame: CGRect(x: 10, y: 50, width: frame.width - 20, height: frame.height - 60))
+            addSubview(self.pickerView)
+            setLabelLayOut()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        func setLabelLayOut(){
+            label = UILabel(frame: CGRect(x: 10, y: 5, width: frame.width - 20, height: 30))
+            label.text = text
+            label.textColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+            label.textAlignment = NSTextAlignment.center
+            addSubview(label)
             
-            func pickerView(_: UIPickerView , numberOfRowsInComponent: Int)->Int{
-                if(type){
-                    return 7
-                }else{
-                    return 5
-                }
-            }
-            
-            func pickerView(_: UIPickerView, attributedTitleForRow: Int, forComponent: Int)->NSAttributedString!{
-                let stringColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
-                let attributes = [NSForegroundColorAttributeName: stringColor]
-                var showString: NSMutableAttributedString!
-                if(type){
-                    showString = NSMutableAttributedString(string: ageStringValue[attributedTitleForRow], attributes:attributes)
-                }else{
-                    showString = NSMutableAttributedString(string: positionStringValue[attributedTitleForRow], attributes:attributes)
-                }
-                
-                return showString
-            }
-            
-            func pickerView(_: UIPickerView, didSelectRow: Int, inComponent: Int){
-                if(type){
-                    switch didSelectRow {
-                    case 0...6:
-                        subLable.text = "Your AGE is " + ageStringValue[didSelectRow]
-                        break
-                    default:
-                        break
-                    }
-                }else{
-                    switch didSelectRow {
-                    case 0...4:
-                        subLable.text = "Your POSITION is " + positionStringValue[didSelectRow]
-                        break
-                    default:
-                        break
-                    }
-                }
-                
-            }
-            addSubview(pickerView)
+            subLable = UILabel(frame: CGRect(x: 10, y: 35, width: frame.width - 20, height: 30))
+            subLable.textColor = UIColor.darkGray
+            subLable.textAlignment = NSTextAlignment.center
+            addSubview(subLable)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if((self.navigationController?.viewControllers.count)! > 1)
+        {
+            self.navigationController?.viewControllers.removeFirst()
         }
     }
 }
