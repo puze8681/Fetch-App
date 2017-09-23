@@ -12,9 +12,10 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         self.delegate = self
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.blue
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -22,26 +23,28 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         // Create Tab one
         let tabOne = DailyReportViewController()
-        let tabOneBarItem = UITabBarItem(title: "Daily Report", image: UIImage(named: "ic_report_off"), selectedImage: UIImage(named: "ic_report_on"))
-        
+        let tabOneBarItem = UITabBarItem(title: "Daily Report", image: UIImage(named: "ic_report_on"), selectedImage: UIImage(named: "ic_report_on"))
         tabOne.tabBarItem = tabOneBarItem
         
         
         // Create Tab two
         let tabTwo = MainViewController()
-        let tabTwoBarItem = UITabBarItem(title: "Main", image: UIImage(named: "ic_main_off"), selectedImage: UIImage(named: "ic_main_on"))
+        let tabTwoBarItem = UITabBarItem(title: "Main", image: UIImage(named: "ic_main_on"), selectedImage: UIImage(named: "ic_main_on"))
         
         tabTwo.tabBarItem = tabTwoBarItem
         
         // Create Tab Three
         let tabThree = OptionViewController()
-        let tabThreeBarItem = UITabBarItem(title: "Option", image: UIImage(named: "ic_option_off"), selectedImage: UIImage(named: "ic_option_on"))
+        let tabThreeBarItem = UITabBarItem(title: "Option", image: UIImage(named: "ic_option_on"), selectedImage: UIImage(named: "ic_option_on"))
     
         tabThree.tabBarItem = tabThreeBarItem
         
         self.viewControllers = [tabOne, tabTwo, tabThree]
         self.tabBarController?.selectedIndex = 2
-        self.tabBar.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+        self.tabBar.unselectedItemTintColor = UIColor(red: 23/255, green: 138/255, blue: 113/255, alpha: 1)
+        self.tabBar.tintColor = UIColor.white
+        self.tabBar.barTintColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
+
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

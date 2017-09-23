@@ -13,7 +13,6 @@ class DailyReportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Daily Report"
-        self.view.backgroundColor = UIColor.red
         
         print("I'm here : 1")
         // Do any additional setup after loading the view.
@@ -29,13 +28,12 @@ class DailyReportViewController: UIViewController {
     
     //기본 UI 세팅
     func setUISetting(){
-        
-        //배경 색
-        view.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
-        
+        //배경색
+        view.backgroundColor = UIColor.white
+
         //내비게이션 바 아래쪽 뷰 세팅
         let basicUI = UIView(frame: CGRect(x: 0, y: 64, width: view.frame.width, height: view.frame.height-64))
-        basicUI.backgroundColor = UIColor.white
+        basicUI.backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 242/255, alpha: 1)
         self.view.addSubview(basicUI)
     }
     
@@ -45,7 +43,7 @@ class DailyReportViewController: UIViewController {
         let navItem = UINavigationItem(title: "SafeNeck");
         navBar.setItems([navItem], animated: false);
         navBar.layer.shadowRadius = 2
-        navBar.backgroundColor = UIColor.white
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 247/255, green: 246/255, blue: 242/255, alpha: 1)]
         self.view.addSubview(navBar);
     }
     
@@ -78,6 +76,9 @@ class DailyReportViewController: UIViewController {
     func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
             switch swipeGesture.direction{
+            case UISwipeGestureRecognizerDirection.right:
+                self.tabBarController?.selectedIndex = 2
+                
             case UISwipeGestureRecognizerDirection.left:
                 self.tabBarController?.selectedIndex = 1
 
