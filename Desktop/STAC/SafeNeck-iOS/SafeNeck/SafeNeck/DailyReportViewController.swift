@@ -24,6 +24,7 @@ class DailyReportViewController: UIViewController {
     func setUI(){
         setUISetting()
         setNavigationBarView()
+        setSwipeType()
     }
     
     //기본 UI 세팅
@@ -63,5 +64,28 @@ class DailyReportViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func setSwipeType(){
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(DailyReportViewController.respondToSwipeGesture(_:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DailyReportViewController.respondToSwipeGesture(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+            switch swipeGesture.direction{
+            case UISwipeGestureRecognizerDirection.left:
+                self.tabBarController?.selectedIndex = 1
+
+            default:
+                break
+            }
+        }
+    }
+
 
 }

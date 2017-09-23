@@ -29,6 +29,7 @@ class MainViewController: UIViewController {
         setUISetting()
         setNavigationBarView()
         setNoticeNumView()
+        setSwipeType()
     }
     
     //기본 UI 세팅
@@ -119,4 +120,28 @@ class MainViewController: UIViewController {
         }
     }
 
+    func setSwipeType(){
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.respondToSwipeGesture(_:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(MainViewController.respondToSwipeGesture(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+            switch swipeGesture.direction{
+            case UISwipeGestureRecognizerDirection.right:
+                self.tabBarController?.selectedIndex = 0
+
+            case UISwipeGestureRecognizerDirection.left:
+                self.tabBarController?.selectedIndex = 2
+
+            default:
+                break
+            }
+        }
+    }
 }

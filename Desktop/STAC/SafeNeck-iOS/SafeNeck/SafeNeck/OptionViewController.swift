@@ -24,6 +24,7 @@ class OptionViewController: UIViewController {
     func setUI(){
         setUISetting()
         setNavigationBarView()
+        setSwipeType()
     }
     
     //기본 UI 세팅
@@ -64,4 +65,25 @@ class OptionViewController: UIViewController {
     }
     */
 
+    func setSwipeType(){
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(OptionViewController.respondToSwipeGesture(_:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(OptionViewController.respondToSwipeGesture(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    func respondToSwipeGesture(_ gesture: UIGestureRecognizer){
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+            switch swipeGesture.direction{
+            case UISwipeGestureRecognizerDirection.right:
+                self.tabBarController?.selectedIndex = 1
+
+            default:
+                break
+            }
+        }
+    }
 }

@@ -35,12 +35,12 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         // Create Tab Three
         let tabThree = OptionViewController()
-        let tabThreeBarItem = UITabBarItem(title: "Option", image: UIImage(named: "ic_main_off"), selectedImage: UIImage(named: "ic_main_on"))
+        let tabThreeBarItem = UITabBarItem(title: "Option", image: UIImage(named: "ic_option_off"), selectedImage: UIImage(named: "ic_option_on"))
     
         tabThree.tabBarItem = tabThreeBarItem
         
         self.viewControllers = [tabOne, tabTwo, tabThree]
-        self.tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 2
         self.tabBar.backgroundColor = UIColor(red: 31/255, green: 183/255, blue: 149/255, alpha: 1)
     }
 
